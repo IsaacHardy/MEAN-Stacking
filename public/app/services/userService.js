@@ -1,26 +1,36 @@
 angular.module('userService', [])
-  .factory('User', function($http) {
-    var userFactory = {};
 
-    userFactory.get = function(id) {
-      return $http.get('/api/users/' + id);
-    };
+.factory('User', function($http) {
 
-    userFactory.all = function() {
-      return $http.get('/api/users/');
-    };
+  // create a new object
+  var userFactory = {};
 
-    userFactory.create = function(userData) {
-      return $http.post('/api/users/', userData);
-    };
+  // get a single user
+  userFactory.get = function(id) {
+    return $http.get('/api/users/' + id);
+  };
 
-    userFactory.update = function(id, userData) {
-      return $http.put('/api/users/' + id, userData);
-    };
+  // get all users
+  userFactory.all = function() {
+    return $http.get('/api/users/');
+  };
 
-    userFactory.delete = function(id) {
-      return $http.delete('/api/users/' + id);
-    };
+  // create a user
+  userFactory.create = function(userData) {
+    return $http.post('/api/users/', userData);
+  };
 
-    return userFactory;
-  });
+  // update a user
+  userFactory.update = function(id, userData) {
+    return $http.put('/api/users/' + id, userData);
+  };
+
+  // delete a user
+  userFactory.delete = function(id) {
+    return $http.delete('/api/users/' + id);
+  };
+
+  // return our entire userFactory object
+  return userFactory;
+
+});
