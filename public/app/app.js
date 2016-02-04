@@ -5,4 +5,7 @@ angular.module('userApp', [
   'mainCtrl',
   'userCtrl',
   'userService'
-]);
+])
+  .config(function($httpProvider) {
+    $httpProvider.interceptors.push('AuthInterceptor');
+});

@@ -12,13 +12,15 @@ app.use(bodyParser.json());
 app.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, \Authorization');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
   next();
 });
 
 app.use(morgan('dev'));
 
 mongoose.connect(config.database);
+
+app.use(express.static(__dirname + '/public'));
 
 var apiRoutes   = require('./app/routes/api')(app, express);
 app.use('/api', apiRoutes);
